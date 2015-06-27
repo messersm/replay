@@ -3,7 +3,7 @@ Python library to replay the results of (random) function calls.
 
 [![Build Status](https://travis-ci.org/messersm/replay.svg?branch=master)](https://travis-ci.org/messersm/replay)
 
-## introduction
+## Introduction
 
 replay is a simple package that enables you to save the results of
 time intensive deterministic function calls or random function calls
@@ -64,10 +64,10 @@ Example:
 ```
 """
 
-## installation
+## Installation
 
 replay is registred in the Python Package Index (PyPi). You can simply
-using:
+install the package using pip:
 
 ```shell
 pip install replay
