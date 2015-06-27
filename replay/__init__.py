@@ -48,7 +48,7 @@ Example:
 >>> import replay
 >>> import tempfile
 >>> fd, tmpname = tempfile.mkstemp(suffix='.replay')
->>> with open(tmpname, 'w') as f: f.write('random() = 40\n')
+>>> with open(tmpname, 'w') as f: n = f.write('random() = 40\n')
 >>> r = Replay(tmpname)
 >>> r(random.random)
 40
