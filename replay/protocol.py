@@ -3,6 +3,13 @@
 # standard imports
 import json
 
+# import StringIO, since we need it for doctests
+import sys
+if sys.version_info.major > 2:
+    from io import StringIO
+else:
+    from StringIO import StringIO
+
 # local imports
 from .entry import ReplayCall, ReplayComment
 
@@ -90,15 +97,14 @@ class ReadableProtocol(object):
         replayfile can be a filename or file-like object.
 
         Example:
-        >>> import StringIO
-        >>> f = StringIO.StringIO()
+        >>> f = StringIO()
         >>> p = ReadableProtocol()
         >>> entries = []
         >>> entries.append(ReplayComment(comment='This is a comment.'))
         >>> entries.append(ReplayCall(call='random()', result=0.7))
-        >>> f.write('# This is a comment.\n')
-        >>> f.write('random() = 0.7\n')
-        >>> f.seek(0)
+        >>> n = f.write('# This is a comment.\n')
+        >>> n = f.write('random() = 0.7\n')
+        >>> n = f.seek(0)
         >>> p.load(f) == entries
         True
         """
@@ -128,14 +134,13 @@ class ReadableProtocol(object):
         replayfile can be a filename or file-like object.
 
         Example:
-        >>> import StringIO
-        >>> f = StringIO.StringIO()
+        >>> f = StringIO()
         >>> p = ReadableProtocol()
         >>> entries = []
         >>> entries.append(ReplayComment(comment='This is a comment.'))
         >>> entries.append(ReplayCall(call='random()', result=0.7))
         >>> p.save(entries, f)
-        >>> f.seek(0)
+        >>> n = f.seek(0)
         >>> f.read()
         '# This is a comment.\nrandom() = 0.7\n'
         """
@@ -156,3 +161,7 @@ class ReadableProtocol(object):
             else:
                 raise TypeError(
                     'Unknown entry type: %s' % type(entry).__name__)
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

@@ -108,3 +108,7 @@ class Replay(object):
         if replayfile is None:
             replayfile = self.filename
         self.protocol.save(self.entries, replayfile)
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
