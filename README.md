@@ -1,7 +1,6 @@
-# replay
-Python library to replay the results of (random) function calls.
+# replay [![Build Status](https://travis-ci.org/messersm/replay.svg?branch=master)](https://travis-ci.org/messersm/replay)
 
-[![Build Status](https://travis-ci.org/messersm/replay.svg?branch=master)](https://travis-ci.org/messersm/replay)
+Python library to replay the results of (random) function calls.
 
 ## Introduction
 
@@ -15,29 +14,50 @@ calls and looks for the hashes in the replay file, so there's no
 security risk in changing replay files (other then, that you could
 get other results...).
 
-Example:
-```python
->>> import os
->>> import random
->>> import replay
->>> import tempfile
->>> fd, tmpname = tempfile.mkstemp(suffix='.replay')
->>> r1 = Replay(tmpname)
->>> random_numbers1 = [r1(random.random) for i in range(10)]
->>> r1.save()
->>> del r1
->>> r2 = Replay(tmpname)
->>> random_numbers2 = [r2(random.random) for i in range(10)]
->>> random_numbers1 == random_numbers2
-True
->>> os.remove(tmpname)
-```
-
 Replay files can have different formats. Right now only a human-readable
 and -editable format is implemented. This format looks mostly like python
 except that the actual values a encoded with json.
 
-Here's an example for such a file:
+Here's an example script:
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import random
+import replay
+
+r = replay.Replay('random.replay')
+
+for i in range(5):
+    print(r(random.random))
+    
+r.save()
+```
+
+The output is:
+
+```
+0.471306418755
+0.954368067794
+0.975113533495
+0.155125371588
+0.50165523797
+```
+
+Running this for the first time will create the file 'random.replay',
+which will look like this:
+
+```
+random() = 0.4713064187546834
+random() = 0.9543680677943641
+random() = 0.9751135334950991
+random() = 0.15512537158813866
+random() = 0.501655237970431
+```
+
+Running the script for the second time will result in the same output.
+Here's another example for a replay file:
 ```
 random() = 0.3
 pow(2, 3) = 8
