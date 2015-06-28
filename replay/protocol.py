@@ -5,7 +5,7 @@ import json
 
 # import StringIO, since we need it for doctests
 import sys
-if sys.version_info.major > 2:
+if sys.version_info[0] > 2:
     from io import StringIO
 else:
     from StringIO import StringIO
@@ -161,7 +161,3 @@ class ReadableProtocol(object):
             else:
                 raise TypeError(
                     'Unknown entry type: %s' % type(entry).__name__)
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
