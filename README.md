@@ -16,7 +16,7 @@ get other results...).
 
 Replay files can have different formats. Right now only a human-readable
 and -editable format is implemented. This format looks mostly like python
-except that the actual values a encoded with json.
+except that the actual values are encoded with json.
 
 Here's an example script:
 
