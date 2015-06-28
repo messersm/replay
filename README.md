@@ -67,9 +67,7 @@ sorted([7, 2, 3], reverse=true) = [7, 3, 2]
 ```
 
 You can freely edit such a file and future calls to these functions
-will return the results you write into them:
-
-Example:
+will return the results you write into them. Example:
 ```
 >>> import os
 >>> import random
@@ -82,7 +80,6 @@ Example:
 40
 >>> os.remove(tmpname)
 ```
-"""
 
 ## Installation
 
