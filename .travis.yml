@@ -1,9 +1,15 @@
 language: python
 python:
-  - "2.6"
-  - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
-# command to run tests
+- '2.6'
+- '2.7'
+- '3.2'
+- '3.3'
+- '3.4'
 script: nosetests --with-doctest
+deploy:
+  provider: pypi
+  user: messersm
+  on:
+    tags: true
+  password:
+    secure: OXXQ2kvCwOymVE3tCxDuhYfkPW+YE78keFa8WP3Wlc2DhVEqO2acFxhVfXb+qM+t7MMvvnpSHr2QvUWjlgfqaOvY37Jj/zottnXhuW6N/Ju27uO1Qg9Tbb7oYREz3H6A5UCDVUIzBj6R6mcJbCxaveC0QjY2er0ZAfKEEUKT7GifMirbw3NzP1kVYvqcrqhHZ4t058kh3TSrH1FSOtMT8O5LewraDkn2tczgxtKtjfau51Gaqd0BdbxjAHwypsJdiqajSMOXIJld833xk28aOqtP2l9T1BI9qTTj8nsFJUTvFs3nAu01l1hGoU/6qEAqDg1w0uYTXWcM9qm1LX8ai8KhU4q9/s/ZdCWQw2NSVtgoHbRNDlt6uEpyDDeLQXOqRU6R4YK3GuPr5htkTBf3hTutTbGD2T9YsikzAirT4U5ihh3b+KwnEUna4W//R+4x2N+PEkc80x4fJ/h+ruVXJJ2CwViMBvycHZ76ShYqkctSiFOQFgg1yuHoYYvoFHzjUNQr25812e4KRMCKmrmm78r42KIKMWl+PmmrVRJLZT+UrU65VJNN2GHMDYa3DxRl6IJ7qtUyhTexInzICbA68hU57XyqtH5fXwSAwnJYRHpfAXOB9GpOt7o7BWz+5l+fJp2loaSzMub3ePwXAz9k5HL+jnoXWdYbu+NdslBB3cg=
