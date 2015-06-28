@@ -141,9 +141,14 @@ class ReadableProtocol(object):
         >>> entries.append(ReplayCall(call='random()', result=0.7))
         >>> p.save(entries, f)
         >>> n = f.seek(0)
-        >>> f.read()
-        '# This is a comment.\nrandom() = 0.7\n'
+        >>> result = json.dumps(0.7)
+        >>> f.read() == '# This is a comment.\nrandom() = %s\n' % result
+        True
         """
+        
+        # NOTE: The above code makes sure, that python 2.6 doesn't
+        # fail this test. (0.7 == 0.69999999999999996)
+        
         if isinstance(replayfile, str):
             with open(replayfile, 'w') as f:
                 self._save_to_fileobject(entries, f)
