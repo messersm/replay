@@ -1,4 +1,4 @@
-# replay [![Build Status](https://travis-ci.org/messersm/replay.svg?branch=master)](https://travis-ci.org/messersm/replay)
+# replay [![Build Status](https://travis-ci.org/messersm/replay.svg?branch=master)](https://travis-ci.org/messersm/replay) [![Coverage Status](https://coveralls.io/repos/messersm/replay/badge.svg?branch=master&service=github)](https://coveralls.io/github/messersm/replay?branch=master)
 
 Python library to replay the results of (random) function calls.
 
