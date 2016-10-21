@@ -7,6 +7,7 @@ python:
   - '3.4'
 install:
   - pip install coveralls
+  - pip install coverage<4
 script: nosetests --with-doctest --with-coverage --cover-package=replay
 after_success: coveralls
 deploy:
