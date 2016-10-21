@@ -1,5 +1,7 @@
 """Module that provides the Replay object."""
 
+import copy
+
 # local imports
 from .entry import ReplayCall, ReplayComment
 from .protocol import ReadableProtocol
@@ -29,8 +31,9 @@ class Replay(object):
         # If there's no call saved, call the function, save the
         # result, mark the call used and return it.
         result = func(*args, **kwargs)
+        saved = copy.deepcopy(result)
         index = len(self.entries)
-        self.entries.append(ReplayCall(callhash, result))
+        self.entries.append(ReplayCall(callhash, saved))
         self.replayed.append(index)
 
         return result
@@ -58,6 +61,14 @@ class Replay(object):
         >>> r.reset()
         >>> r(random.random) == x
         True
+        
+        >>> def somefunc():
+        ...     return [1, 2, 3, 4, 5]
+        >>> r = Replay()
+        >>> l = r(somefunc)
+        >>> l.remove(4)
+        >>> r.entries[0]
+        ReplayCall(call='somefunc()', result=[1, 2, 3, 4, 5])
         """
 
         # Keeps track of the calls, that have already been used.
